@@ -1,0 +1,13 @@
+if [[ $# -ne 2 ]]; then
+	echo "usage: swap file1 file2"
+
+	return 1
+fi
+
+temp_file=$(mktemp $(dirname "$1")/XXXXXX)
+
+mv "$1" "$temp_file"
+
+mv "$2" "$1"
+
+mv "$temp_file" "$2"

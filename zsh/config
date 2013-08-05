@@ -1,0 +1,31 @@
+autoload -U colors && colors
+
+fpath=($HOME/dotfiles/zsh/functions $fpath)
+
+autoload -U $HOME/dotfiles/zsh/functions/*(:t)
+
+export PS1="%{$fg[cyan]%}%n%{$reset_color%} %{$fg[yellow]%}%~%{$reset_color%}%# "
+
+export ERLANG_HOME="/usr/local/lib/erlang"
+
+export PATH="$HOME/.rvm/bin:$HOME/bin:$ERLANG_HOME/bin:$HOME/.cabal/bin:$PATH"
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+
+export GOPATH="$HOME/golang"
+
+export CC="$HOME/bin/gcc"
+
+REPORTTIME=30
+
+setopt PROMPT_SUBST
+
+setopt APPEND_HISTORY
+
+setopt INC_APPEND_HISTORY SHARE_HISTORY
+
+setopt HIST_IGNORE_ALL_DUPS
+
+setopt HIST_REDUCE_BLANKS

@@ -1,0 +1,7 @@
+if [[ $# -ne 2 ]]; then
+	echo "usage: curldiff url1 url2"
+
+	return 1
+fi
+
+diff -y <( "curl $1 2>/dev/null" ) <( "curl $2 2>/dev/null" )

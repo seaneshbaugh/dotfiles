@@ -1,0 +1,9 @@
+export ERLANG_HOME="/usr/local/lib/erlang"
+
+export PATH="$HOME/.rvm/bin:$HOME/bin:$ERLANG_HOME/bin:$HOME/.cabal/bin:$PATH"
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+
+export CC="$HOME/bin/gcc"
