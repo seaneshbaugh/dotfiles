@@ -3,3 +3,5 @@ alias curl="noglob curl"
 alias cdiff="curldiff"
 
 alias sf="searchfiles"
+
+alias emacs="/usr/local/Cellar/emacs/24.3/Emacs.app/Contents/MacOS/Emacs -nw"
