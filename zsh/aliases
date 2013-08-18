@@ -4,4 +4,4 @@ alias cdiff="curldiff"
 
 alias sf="searchfiles"
 
-alias emacs="/usr/local/Cellar/emacs/24.3/Emacs.app/Contents/MacOS/Emacs -nw"
+alias emacs="/usr/local/Cellar/emacs/24.3/bin/emacs-24.3"
