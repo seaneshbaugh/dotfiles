@@ -8,7 +8,9 @@ export PS1="%{$fg[cyan]%}%n%{$reset_color%} %{$fg[yellow]%}%~%{$reset_color%}%# 
 
 export ERLANG_HOME="/usr/local/lib/erlang"
 
-export PATH="$HOME/.rvm/bin:$HOME/bin:$ERLANG_HOME/bin:$HOME/.cabal/bin:/usr/local/gnat/bin:$PATH"
+# export PATH="$HOME/.rvm/bin:$HOME/bin:$ERLANG_HOME/bin:$HOME/.cabal/bin:/usr/local/gnat/bin:$PATH"
+
+export PATH="$HOME/.rvm/bin:$HOME/bin:$ERLANG_HOME/bin:$HOME/.cabal/bin:/usr/local/gnat/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
@@ -17,6 +19,9 @@ if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 export GOPATH="$HOME/golang"
 
 export CC="$HOME/bin/gcc"
+
+precmd () {print -Pn "\e]2; %~/ \a"}
+preexec () {print -Pn "\e]2; %~/ \a"}
 
 REPORTTIME=30
 
