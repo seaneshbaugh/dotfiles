@@ -1,6 +1,6 @@
 # dotfiles
 
-My dotfiles to set up my environment. I mostly use OSX but these should generally work anywhere.
+My dotfiles to set up my environment. I mostly use OSX but these should generally work anywhere with a little modification.
 
 You should probably make your own.
 
@@ -14,7 +14,7 @@ You should probably make your own.
 
 This is based off [Ryan Bates' old dotfile setup](https://github.com/ryanb/dotfiles/tree/custom-bash-zsh). [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) is great, but is just a bit much. I like to keep my setup as close to the default as possible and change only what I know from personal experience the things I prefer.
 
-## Resources
+## Shell Resources
 
 * http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/
 * http://zsh.sourceforge.net/Intro/intro_toc.html
@@ -24,3 +24,10 @@ This is based off [Ryan Bates' old dotfile setup](https://github.com/ryanb/dotfi
 * http://www.grymoire.com/Unix/Quote.html
 * http://www.acm.uiuc.edu/workshops/zsh/prompt/escapes.html
 * http://www.shellcheck.net/
+
+## Emacs Resources
+
+* http://crypt.codemancers.com/posts/2013-09-26-setting-up-emacs-as-development-environment-on-osx
+* http://swaroopch.com/2013/10/17/emacs-configuration-tutorial/
+* https://github.com/cask/cask
+* https://github.com/rdallasgray/pallet

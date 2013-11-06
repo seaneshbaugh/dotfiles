@@ -4,7 +4,7 @@ directory=~/dotfiles
 
 backup_directory=~/dotfiles_backup
 
-files="bash_profile bashrc emacs gemrc gitconfig vimrc zlogin zlogout zshenv zshrc"
+files="bash_profile bashrc emacs.d gemrc gitconfig vimrc zlogin zlogout zshenv zshrc"
 
 mkdir -p $backup_directory
 

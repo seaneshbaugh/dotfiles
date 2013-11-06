@@ -1,0 +1,6 @@
+/.cask
+/auto-save-list
+/elpa
+*~
+*.elc
+ac-comphist.dat

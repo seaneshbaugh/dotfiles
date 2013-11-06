@@ -1,3 +1,5 @@
+alias ls="ls -aGl"
+
 alias curl="noglob curl"
 
 alias cdiff="curldiff"
