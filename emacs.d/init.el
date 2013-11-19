@@ -37,9 +37,14 @@
 ;; Indent with spaces instead of tabs
 (setq-default indent-tabs-mode nil)
 
+;; Show line numbers
+(global-linum-mode t)
+
+;; Add a space between line numbers and the buffer
+(setq linum-format "%d ")
+
 ;; Enable copy and pasting from clipboard
 (setq x-select-enable-clipboard t)
-
 
 (setq enh-ruby-program "~/.rvm/rubies/ruby-2.0.0-p247/bin/ruby")
 (autoload 'enh-ruby-mode "enh-ruby-mode" "Major mode for ruby files" t)
@@ -54,7 +59,6 @@
 (add-to-list 'interpreter-mode-alist '("ruby" . enh-ruby-mode))
 (setq enh-ruby-bounce-deep-indent t)
 (setq enh-ruby-hanging-brace-indent-level 2)
-
 
 (require 'auto-complete-config)
 ;;(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
