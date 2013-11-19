@@ -2,9 +2,11 @@
 
 (depends-on "auto-complete")
 (depends-on "dash")
-(depends-on "enh-ruby-mode")
 (depends-on "f")
 (depends-on "git")
 (depends-on "pallet")
 (depends-on "s")
 (depends-on "use-package")
+
+(depends-on "enh-ruby-mode")
+(depends-on "scala-mode2")
