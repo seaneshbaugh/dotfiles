@@ -60,10 +60,38 @@
 (setq enh-ruby-bounce-deep-indent t)
 (setq enh-ruby-hanging-brace-indent-level 2)
 
+(load "algol68-mode")
+(load "io-mode")
+
 (require 'auto-complete-config)
-;;(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/.cask/24.3.1/elpa/auto-complete-20130724.1750/dict")
 (ac-config-default)
 (setq ac-ignore-case nil)
-(add-to-list 'ac-modes 'enh-ruby-mode)
-(add-to-list 'ac-modes 'web-mode)
+(dolist (mode '(emacs-lisp-mode
+                enh-ruby-mode
+                java-mode
+                javascript-mode
+                html-mode
+                list-mode
+                org-mode
+                sh-mode
+                text-mode
+                web-mode))
+ (add-to-list 'ac-modes mode))
+
+(load "custom-commands")
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes (quote ("9773ddae50e6891ae5cebb0f8c5ea099eba19f6dd1d31efe3328166a5fadb527" default))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
+(load-theme 'sean t)
