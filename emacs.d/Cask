@@ -1,9 +1,11 @@
 (source melpa)
+(source "org" "http://orgmode.org/elpa/")
 
 (depends-on "auto-complete")
 (depends-on "dash")
 (depends-on "f")
 (depends-on "git")
+(depends-on "org-plus-contrib")
 (depends-on "pallet")
 (depends-on "s")
 (depends-on "use-package")
