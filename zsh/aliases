@@ -2,8 +2,18 @@ alias ls="ls -aGl"
 
 alias curl="noglob curl"
 
+alias please="sudo !!"
+
 alias cdiff="curldiff"
 
 alias sf="searchfiles"
 
 alias emacs="/usr/local/Cellar/emacs/24.3/bin/emacs-24.3"
+
+alias listenports="sudo lsof -nP -iTCP -sTCP:LISTEN"
+
+alias lports="listenports"
+
+alias portowner="portowner"
+
+alias powner="portowner"

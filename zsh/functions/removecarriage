@@ -1,0 +1,7 @@
+if [[ $# -ne 2 ]]; then
+  echo "usage: removecarriage inputfile outputfile"
+
+  return 1
+fi
+
+tr '\r' '\n' < "$1" > "$2"

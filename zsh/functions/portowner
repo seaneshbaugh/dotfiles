@@ -1,0 +1,7 @@
+if [[ $# -ne 1 ]]; then
+  echo "usage: portowner port"
+
+  return 1
+fi
+
+sudo lsof -nP -i4TCP:$1 -sTCP:LISTEN
