@@ -17,3 +17,5 @@ alias lports="listenports"
 alias portowner="portowner"
 
 alias powner="portowner"
+
+alias allgemsets="rvm all do rvm gemset list"

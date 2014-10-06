@@ -1,6 +1,6 @@
 export ERLANG_HOME="/usr/local/lib/erlang"
 
-export PATH="$HOME/.rvm/bin:$HOME/bin:$ERLANG_HOME/bin:$HOME/.cabal/bin:$HOME/.cask/bin:/usr/local/gnat/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
+export PATH="$HOME/.rvm/bin:$HOME/bin:$ERLANG_HOME/bin:$HOME/.cabal/bin:$HOME/.cask/bin:/usr/local/gnat/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin:/opt/X11/bin"
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
