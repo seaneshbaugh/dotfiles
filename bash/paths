@@ -6,4 +6,4 @@ export PATH="$HOME/.rvm/bin:$HOME/bin:$ERLANG_HOME/bin:$HOME/.cabal/bin:$HOME/.c
 
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 
-export CC="$HOME/bin/gcc"
+#export CC="$HOME/bin/gcc"
