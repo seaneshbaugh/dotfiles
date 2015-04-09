@@ -37,6 +37,7 @@
 (depends-on "nyan-mode")
 (depends-on "org-plus-contrib")
 (depends-on "pallet")
+(depends-on "pbcopy")
 (depends-on "popwin")
 (depends-on "prodigy")
 (depends-on "projectile")

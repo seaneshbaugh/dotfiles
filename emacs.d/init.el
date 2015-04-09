@@ -79,6 +79,10 @@
 (require 'no-easy-keys)
 (no-easy-keys 1)
 
+;; Enable OSX clipboard copying
+(require 'pbcopy)
+(turn-on-pbcopy)
+
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories "~/dotfiles/emacs.d/.cask/24.4.1/elpa/auto-complete-20150322.813")
 (ac-config-default)

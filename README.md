@@ -63,6 +63,7 @@ The following ELPA packages are used:
 * nyan-mode: [melpa](http://melpa.org/#/nyan-mode), [github](https://github.com/TeMPOraL/nyan-mode)
 * org-plus-contrib: [org](http://orgmode.org/elpa/), [source](http://orgmode.org/cgit.cgi/org-mode.git/)
 * pallet: [melpa](http://melpa.org/#/pallet), [github](https://github.com/rdallasgray/pallet)
+* pbcopy: [melpa](http://melpa.org/#/pbcopy), [marmalade](https://marmalade-repo.org/packages/pbcopy), [github](https://github.com/emacsfodder/pbcopy.el)
 * popwin: [melpa](http://melpa.org/#/popwin), [marmalade](https://marmalade-repo.org/packages/popwin), [github](https://github.com/m2ym/popwin-el)
 * prodigy: [melpa](http://melpa.org/#/prodigy), [github](https://github.com/rejeep/prodigy.el)
 * projectile: [melpa](http://melpa.org/#/projectile), [marmalade](https://marmalade-repo.org/packages/projectile), [github](https://github.com/bbatsov/projectile)
