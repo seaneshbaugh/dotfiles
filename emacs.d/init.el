@@ -26,6 +26,11 @@
 ;; Indent with spaces instead of tabs
 (setq-default indent-tabs-mode nil)
 
+(setq whitespace-action '(auto-cleanup))
+
+;; Always remove trailing whitepaace on save
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
 ;; Show line numbers
 (global-linum-mode t)
 
@@ -99,9 +104,35 @@
                 web-mode))
  (add-to-list 'ac-modes mode))
 
+;; Coffee mode config.
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(coffee-tab-width 2))
+
 ;; Org mode config.
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 (add-hook 'org-mode-hook 'turn-on-font-lock)
 (global-set-key "\C-c l" 'org-store-link)
 (global-set-key "\C-c a" 'org-agenda)
 (global-set-key "\C-c b" 'org-iswitchb)
+
+;; SCSS mode config.
+(setq scss-compile-at-save nil)
+
+;; Enable git-gutter mode
+(global-git-gutter-mode t)
+(git-gutter:linum-setup)
+
+;; Enable neotree
+(require 'neotree)
+(global-set-key [f8] 'neotree-toggle)
+(custom-set-faces
+
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(neo-file-link-face ((t (:foreground "brightwhite")))))
