@@ -40,6 +40,9 @@
 ;; Enable copy and pasting from clipboard
 (setq x-select-enable-clipboard t)
 
+;; Show column number
+(setq column-number-mode t)
+
 ;; Get rid of "ls does not support --dired" message on OSX
 (setq dired-use-ls-dired nil)
 
@@ -129,6 +132,9 @@
 ;; Enable neotree
 (require 'neotree)
 (global-set-key [f8] 'neotree-toggle)
+
+(custom-set-variables '(neo-window-width 50))
+
 (custom-set-faces
 
  ;; custom-set-faces was added by Custom.
