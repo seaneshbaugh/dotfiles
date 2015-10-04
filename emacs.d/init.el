@@ -83,6 +83,15 @@
 (setq enh-ruby-bounce-deep-indent t)
 (setq enh-ruby-hanging-brace-indent-level 2)
 
+;; Function to remove magic comment insert hook
+(defun remove-enh-magic-comment ()
+  (remove-hook 'before-save-hook 'enh-ruby-mode-set-encoding t))
+
+;; Add the hook to call our hook removing function
+(add-hook 'enh-ruby-mode-hook 'remove-enh-magic-comment)
+
+(setq ruby-insert-encoding-magic-comment nil)
+
 ;; No Easy Keys
 (require 'no-easy-keys)
 (no-easy-keys 1)
@@ -142,3 +151,12 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(neo-file-link-face ((t (:foreground "brightwhite")))))
+
+(global-set-key (kbd "C-x p") 'previous-multiframe-window)
+
+(global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
+(global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
+(global-set-key (kbd "S-C-<down>") 'shrink-window)
+(global-set-key (kbd "S-C-<up>") 'enlarge-window)
+
+(setq w3m-use-cookies t)
