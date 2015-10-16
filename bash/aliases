@@ -1,3 +1,3 @@
-. ~$HOME/dotfiles/zsh/aliases
+. ~/dotfiles/zsh/aliases
 
 alias reload=". $HOME/.bash_profile"
