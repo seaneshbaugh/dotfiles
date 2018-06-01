@@ -1,9 +1,11 @@
 [user]
-	name = Sean Eshbaugh
-	email = seaneshbaugh@gmail.com
+    name = Sean Eshbaugh
+    email = seaneshbaugh@gmail.com
+
 [diff]
 [color]
     ui = auto
+
 [alias]
     st = status
     ci = commit
