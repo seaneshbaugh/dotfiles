@@ -34,3 +34,6 @@
 
 [merge]
     tool = vimdiff
+
+[color "diff"]
+    whitespace = red reverse
