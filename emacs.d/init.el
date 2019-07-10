@@ -1,4 +1,3 @@
-
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
@@ -33,16 +32,18 @@
 ;; Indent with spaces instead of tabs
 (setq-default indent-tabs-mode nil)
 
-(setq whitespace-action '(auto-cleanup))
+;; (setq whitespace-action '(auto-cleanup))
 
-;; Always remove trailing whitepaace on save
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
+;; ;; Always remove trailing whitepaace on save
+;; (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;; Show line numbers
-(global-linum-mode t)
+;;(global-linum-mode t)
+(global-display-line-numbers-mode t)
 
 ;; Add a space between line numbers and the buffer
-(setq linum-format "%d ")
+;;(setq linum-format "%d ")
+(setq display-line-numbers "%4%d ")
 
 ;; Enable copy and pasting from clipboard
 (setq x-select-enable-clipboard t)
@@ -65,9 +66,6 @@
 
 ;; Load algol68-mode
 (load-x "algol68-mode")
-
-;; Load Io mode
-(load-x "io-mode")
 
 (autoload 'enh-ruby-mode "enh-ruby-mode" "Major mode for ruby files" t)
 
@@ -99,6 +97,8 @@
 
 (setq ruby-insert-encoding-magic-comment nil)
 
+(add-hook 'enh-ruby-mode-hook #'rubocop-mode)
+
 ;; No Easy Keys
 (require 'no-easy-keys)
 (no-easy-keys 1)
@@ -129,7 +129,11 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(coffee-tab-width 2))
+ '(coffee-tab-width 2)
+ '(js-indent-level 2)
+ '(neo-window-width 50)
+ '(safe-local-variable-values (quote ((encoding . utf-8))))
+ '(send-mail-function (quote smtpmail-send-it)))
 
 ;; Org mode config.
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
@@ -143,16 +147,13 @@
 
 ;; Enable git-gutter mode
 (global-git-gutter-mode t)
-(git-gutter:linum-setup)
+;;(git-gutter:linum-setup)
 
 ;; Enable neotree
 (require 'neotree)
 (global-set-key [f8] 'neotree-toggle)
 
-(custom-set-variables '(neo-window-width 50))
-
 (custom-set-faces
-
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
