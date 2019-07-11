@@ -32,17 +32,18 @@
 ;; Indent with spaces instead of tabs
 (setq-default indent-tabs-mode nil)
 
-;; (setq whitespace-action '(auto-cleanup))
+(setq whitespace-action '(auto-cleanup))
 
-;; ;; Always remove trailing whitepaace on save
-;; (add-hook 'before-save-hook 'delete-trailing-whitespace)
+;; Always remove trailing whitepaace on save
+(add-hook 'before-save-hook
+          (lambda ()
+            (unless (string= (file-name-nondirectory (buffer-file-name)) "structure.sql")
+              (delete-trailing-whitespace))))
 
 ;; Show line numbers
-;;(global-linum-mode t)
 (global-display-line-numbers-mode t)
 
 ;; Add a space between line numbers and the buffer
-;;(setq linum-format "%d ")
 (setq display-line-numbers "%4%d ")
 
 ;; Enable copy and pasting from clipboard
