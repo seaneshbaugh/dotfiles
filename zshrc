@@ -1,4 +1,8 @@
 . ~/dotfiles/zsh/config
 . ~/dotfiles/zsh/aliases
+. ~/dotfiles/secrets
+. /usr/local/opt/asdf/asdf.sh
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+. ~/.teladoc.sh
+
+zstyle ':completion:*:*:git:*' script ./git/git-completion.zsh

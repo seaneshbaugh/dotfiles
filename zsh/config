@@ -5,18 +5,13 @@ fpath=($HOME/dotfiles/zsh/functions $fpath)
 autoload -U $HOME/dotfiles/zsh/functions/*(:t)
 
 export PS1="%{$fg[cyan]%}%n%{$reset_color%} %{$fg[yellow]%}%~%{$reset_color%}%# "
+export PATH="$HOME/bin:$PATH"
+export GOPATH="$HOME/go"
+export EDITOR="emacs"
 
-export ERLANG_HOME="/usr/local/lib/erlang"
-
-export PATH="$HOME/.rvm/bin:$HOME/bin:$ERLANG_HOME/bin:$HOME/.cabal/bin:$HOME/.cask/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin:/opt/X11/bin:/usr/local/gnat/bin:/usr/texbin"
+if [[ -d "$HOME/opt/GNAT/2018/bin" ]]; then export PATH="$HOME/opt/GNAT/2018/bin:$PATH"; fi
 
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
-
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-
-export GOPATH="$HOME/golang"
-
-#export CC="$HOME/bin/gcc"
 
 precmd () {print -Pn "\e]2; %~/ \a"}
 preexec () {print -Pn "\e]2; %~/ \a"}
@@ -25,10 +20,13 @@ REPORTTIME=30
 
 setopt PROMPT_SUBST
 
-setopt APPEND_HISTORY
+[ -z "$HISTFILE" ] && HISTFILE="$HOME/.zsh_history"
 
-setopt INC_APPEND_HISTORY SHARE_HISTORY
+HISTSIZE=500000
+SAVEHIST=100000
 
-setopt HIST_IGNORE_ALL_DUPS
-
-setopt HIST_REDUCE_BLANKS
+setopt EXTENDED_HISTORY
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_IGNORE_DUPS
+setopt HIST_VERIFY
+setopt SHARE_HISTORY
