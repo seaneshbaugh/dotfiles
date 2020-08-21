@@ -1,8 +1,0 @@
-if [[ $# -lt 1 ]]; then
-	echo "usage: searchfiles string"
-
-	return 1
-fi
-
-# find . -type f -print0 | xargs -0 grep --color=auto  -n -i "$@"
-find . -type f -exec grep --color=auto -n -i "$@" {} +

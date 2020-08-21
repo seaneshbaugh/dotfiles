@@ -1,4 +1,4 @@
-history_files="bash_history irb-history jline-clojure.main.history julia_history lesshst mysql_history pry_history scala_history sh_history"
+history_files="bash_history irb-history jline-clojure.main.history julia_history lesshst mysql_history pry_history scala_history sh_history zsh_history"
 
 for history_file in $history_files; do
     [ -f ~/.$history_file ] && rm ~/.$history_file

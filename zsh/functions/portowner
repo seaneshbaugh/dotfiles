@@ -4,4 +4,4 @@ if [[ $# -ne 1 ]]; then
   return 1
 fi
 
-sudo lsof -nP -i4TCP:$1 -sTCP:LISTEN
+lsof -nP -i4TCP:$1 -sTCP:LISTEN
