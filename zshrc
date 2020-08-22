@@ -1,4 +1,4 @@
-SOURCE=${(%):-%N}
+SOURCE="${(%):-%N}"
 
 while [ -h "$SOURCE" ]; do
     DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
