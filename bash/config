@@ -1,1 +1,11 @@
+export PATH="$HOME/bin:$PATH"
+
 export PS1="\e[0;36m\u\e[m \e[0;33m\w\e[m% "
+
+export EDITOR="emacs"
+
+export GOPATH="$HOME/go"
+
+if [[ -d "$HOME/opt/GNAT/2018/bin" ]]; then export PATH="$HOME/opt/GNAT/2018/bin:$PATH"; fi
+
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
