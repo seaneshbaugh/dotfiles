@@ -10,11 +10,30 @@ You should probably make your own.
     $ cd dotfiles
     $ ./install.sh
 
+The install script takes the following options:
+
+    -b[backup_directory]    set the backup directory
+    -d                      dry run, do not touch the file system (also sets verbose flag)
+    -f[files]               set the files to install
+    -h                      show help message
+    -v                      show verbose output
+
 ## Notes
 
 This is based off [Ryan Bates' old dotfile setup](https://github.com/ryanb/dotfiles/tree/custom-bash-zsh). [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) is great, but is just a bit much. I like to keep my setup as close to the default as possible and change only what I know from personal experience the things I prefer.
 
 ## Emacs Config Stuff
+
+### Setup
+
+Install Cask
+
+    $ brew install cask
+
+After installing the .emacs.d symlink
+
+    $ cd ~/.emacs.d
+    $ cask install
 
 ### ELPA Sources
 
