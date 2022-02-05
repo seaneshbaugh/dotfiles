@@ -1,22 +1,27 @@
 (setq custom-file "~/.emacs.d/custom.el")
 (ignore-errors (load custom-file))
 
-(require 'package)
-(setq package-enable-at-startup nil)
-(add-to-list 'package-archives
-	     '("melpa" . "https://melpa.org/packages/"))
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 5))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
 
-(package-initialize)
+(straight-use-package 'use-package)
+(setq straight-use-package-by-default t)
 
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
-
-(require 'use-package-ensure)
-(setq use-package-always-ensure t)
-
-(use-package try)
+(use-package a68-mode
+  :straight '(a68-mode :host github
+		       :repo "omar-polo/a68-mode"
+		       :branch "main"))
 
 (use-package which-key
-	     :config
-	     (which-key-mode))
+  :config
+  (which-key-mode))

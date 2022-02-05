@@ -7,5 +7,4 @@ straight/versions/*
 !straight/versions/default.el
 *~
 *.elc
-.last-package-update-day
 ac-comphist.dat
