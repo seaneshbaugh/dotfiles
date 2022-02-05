@@ -39,9 +39,9 @@ After installing the .emacs.d symlink
 
 The following ELPA sources are used:
 
-* [gnu](http://elpa.gnu.org/packages/)
-* [melpa](http://melpa.org/#/)
-* [org](http://orgmode.org/elpa/)
+* [gnu](https://elpa.gnu.org/packages/)
+* [melpa](https://melpa.org/#/)
+* [org](https://orgmode.org/elpa/)
 
 ### ELPA Packages
 
@@ -51,10 +51,12 @@ The following ELPA packages are used:
 * bind-key: [melpa](https://melpa.org/#/bind-key), [github](https://github.com/jwiegley/use-package)
 * cask: [melpa](https://melpa.org/#/cask), [github](https://github.com/cask/cask)
 * clojure-mode: [melpa](https://melpa.org/#/clojure-mode), [github](https://github.com/clojure-emacs/clojure-mode)
+* cobol-mode: [gnu](https://elpa.gnu.org/packages/cobol-mode.html), [GNU Savannah](https://git.savannah.gnu.org/gitweb/?p=emacs/elpa.git;a=tree;f=packages/cobol-mode)
 * coffee-mode: [melpa](https://melpa.org/#/coffee-mode), [github](https://github.com/defunkt/coffee-mode)
 * csharp-mode: [melpa](https://melpa.org/#/csharp-mode), [github](https://github.com/josteink/csharp-mode)
 * d-mode: [melpa](https://melpa.org/#/d-mode), [github](https://github.com/Emacs-D-Mode-Maintainers/Emacs-D-Mode)
 * dash: [melpa](https://melpa.org/#/dash), [github](https://github.com/magnars/dash.el)
+* dockerfile-mode [melpa](https://melpa.org/#/dockerfile-mode), [github](https://github.com/spotify/dockerfile-mode)
 * drag-stuff: [melpa](https://melpa.org/#/drag-stuff), [github](https://github.com/rejeep/drag-stuff.el)
 * elixir-mode: [melpa](https://melpa.org/#/elixir-mode), [github](https://github.com/elixir-lang/emacs-elixir)
 * enh-ruby-mode: [melpa](https://melpa.org/#/enh-ruby-mode), [github](https://github.com/zenspider/enhanced-ruby-mode)
@@ -74,6 +76,7 @@ The following ELPA packages are used:
 * htmlize: [melpa](https://melpa.org/#/htmlize), [source](http://fly.srk.fer.hr/~hniksic/emacs/htmlize.el.cgi)
 * idle-highlight-mode: [melpa](https://melpa.org/#/idle-highlight-mode), [github](https://github.com/nonsequitur/idle-highlight-mode)
 * io-mode: [melpa](https://melpa.org/#/io-mode), [github](https://github.com/superbobry/io-mode)
+* julia-mode: [melpa](https://melpa.org/#/julia-mode), [github](https://github.com/JuliaEditorSupport/julia-emacs)
 * less-css-mode: [melpa](https://melpa.org/#/less-css-mode), [github](https://github.com/purcell/less-css-mode)
 * lua-mode: [melpa](https://melpa.org/#/lua-mode), [github](https://github.com/immerrr/lua-mode)
 * magit: [melpa](https://melpa.org/#/magit), [github](https://github.com/magit/magit/tree/master)
@@ -82,8 +85,6 @@ The following ELPA packages are used:
 * neotree: [melpa](https://melpa.org/#/neotree), [github](https://github.com/jaypei/emacs-neotree)
 * nginx-mode: [melpa](https://melpa.org/#/nginx-mode), [github](https://github.com/ajc/nginx-mode)
 * nim-mode: [melpa](https://melpa.org/#/nim-mode), [github](https://github.com/reactormonk/nim-mode)
-* no-easy-keys: [github](https://github.com/danamlund/emacs-no-easy-keys)
-* nyan-mode: [melpa](https://melpa.org/#/nyan-mode), [github](https://github.com/TeMPOraL/nyan-mode)
 * org-plus-contrib: [org](http://orgmode.org/elpa/), [source](http://orgmode.org/cgit.cgi/org-mode.git/)
 * pallet: [melpa](https://melpa.org/#/pallet), [github](https://github.com/rdallasgray/pallet)
 * pbcopy: [melpa](https://melpa.org/#/pbcopy), [github](https://github.com/emacsfodder/pbcopy.el)
@@ -101,6 +102,7 @@ The following ELPA packages are used:
 * slime: [melpa](https://melpa.org/#/slime), [github](https://github.com/slime/slime)
 * smartparens: [melpa](https://melpa.org/#/smartparens), [github](https://github.com/Fuco1/smartparens)
 * smex: [melpa](https://melpa.org/#/smex), [github](https://github.com/nonsequitur/smex)
+* tuareg: [melpa](https://melpa.org/#/tuareg), [github](https://github.com/ocaml/tuareg)
 * use-package: [melpa](https://melpa.org/#/use-package), [github](https://github.com/jwiegley/use-package)
 * web-mode: [melpa](https://melpa.org/#/web-mode), [github](https://github.com/fxbois/web-mode)
 * yaml-mode: [melpa](https://melpa.org/#/yaml-mode), [github](https://github.com/yoshiki/yaml-mode)
