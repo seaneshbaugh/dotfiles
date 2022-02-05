@@ -1,6 +1,11 @@
-/.cask
-/auto-save-list
-/elpa
+.cask/
+auto-save-list/
+elpa/
+straight/*
+!straight/versions
+straight/versions/*
+!straight/versions/default.el
 *~
 *.elc
+.last-package-update-day
 ac-comphist.dat
