@@ -1,5 +1,6 @@
 .cask/
 auto-save-list/
+backups/
 elpa/
 straight/*
 !straight/versions
