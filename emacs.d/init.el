@@ -26,27 +26,87 @@
 
 (use-package cobol-mode
   :init
-  (add-to-list 'auto-mode-alist '("\\.cob$" . cobol-mode)))
+  (add-to-list 'auto-mode-alist '("\\.cob$" . cobol-mode))
+  (add-to-list 'auto-mode-alist '("\\.cbl\\'" . cobol-mode))
+  (add-to-list 'auto-mode-alist '("\\.cpy\\'" . cobol-mode)))
+
+(use-package coffee-mode)
+
+(use-package csharp-mode
+  :hook (csharp-mode . electric-pair-local-mode))
+
+(use-package d-mode)
+
+(use-package dockerfile-mode)
+
+(use-package elixir-mode
+  :hook (elixir-mode . (lambda () (add-hook 'before-save-hook 'elixir-format nil t))))
+
+(use-package erlang)
+
+(use-package ess)
+
+(use-package fsharp-mode)
 
 (use-package git-gutter
   :init
   (global-git-gutter-mode t))
 
+(use-package go-mode)
+
+(use-package groovy-mode)
+
+(use-package haml-mode)
+
 (use-package handlebars-mode
   :custom
-  (handlebars-basic-offset 4 "The basic indentation offset for handlebars."))
+  (handlebars-basic-offset 4))
+
+(use-package haskell-mode)
+
+(use-package io-mode)
+
+(use-package julia-mode)
+
+(use-package less-css-mode)
+
+(use-package lua-mode
+  :custom
+  (lua-indent-level 2))
+
+(use-package markdown-mode)
 
 (use-package neotree
   :init
   (global-set-key [f8] 'neotree-toggle)
   :custom
-  (neo-window-width 50 "Specifies the width of the NeoTree window.")
+  (neo-window-width 50)
   :custom-face
   (neo-file-link-face ((t (:foreground "brightwhite")))))
+
+(use-package nginx-mode)
+
+(use-package nim-mode)
+
+(use-package rjsx-mode
+  :init
+  ;; Use rjsx-mode for any JavaScript files in a directory named components or containers.
+  (add-to-list 'auto-mode-alist '("components\\/.*\\.js\\'" . rjsx-mode))
+  (add-to-list 'auto-mode-alist '("containers\\/.*\\.js\\'" . rjsx-mode)))
+
+(use-package rust-mode)
+
+(use-package sass-mode)
+
+(use-package scala-mode)
+
+(use-package slim-mode)
 
 (use-package which-key
   :config
   (which-key-mode))
+
+(use-package yaml-mode)
 
 ;; Backups
 
