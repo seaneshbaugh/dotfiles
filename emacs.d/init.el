@@ -37,6 +37,12 @@
 
 (use-package d-mode)
 
+(use-package dired
+  :straight nil
+  :ensure nil
+  :config
+  (setq dired-use-ls-dired nil))
+
 (use-package dockerfile-mode)
 
 (use-package elixir-mode
@@ -68,6 +74,12 @@
 
 (use-package julia-mode)
 
+(use-package js
+  :straight nil
+  :ensure nil
+  :custom
+  (js-indent-level 2))
+
 (use-package less-css-mode)
 
 (use-package lua-mode
@@ -87,6 +99,11 @@
 (use-package nginx-mode)
 
 (use-package nim-mode)
+
+(when (string-equal system-type "darwin")
+  (use-package pbcopy
+    :init
+    (turn-on-pbcopy)))
 
 (use-package rjsx-mode
   :init
@@ -138,3 +155,30 @@
 
 ;; Show trailing whitespace.
 (setq-default show-trailing-whitespace t)
+
+;; Editing
+
+;; Automatically clean up bad whitespace.
+(setq whitespace-action '(auto-cleanup))
+
+;; Always remove trailing whitepaace on save unless the file is named
+;; "structure.sql". For some reason Rails structure.sql files seem to
+;; sometimes have trailing whitespace which when removed causes
+;; problems.
+(add-hook 'before-save-hook
+          (lambda ()
+            (unless (string= (file-name-nondirectory (buffer-file-name)) "structure.sql")
+              (delete-trailing-whitespace))))
+
+;; Keybindings
+
+(global-set-key (kbd "C-x p") 'previous-multiframe-window)
+(global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
+(global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
+(global-set-key (kbd "S-C-<down>") 'shrink-window)
+(global-set-key (kbd "S-C-<up>") 'enlarge-window)
+
+;; Terminal
+
+;; This fixes some rendering issues with zsh.
+(setq system-uses-terminfo nil)
