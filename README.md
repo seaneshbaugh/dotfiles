@@ -18,27 +18,28 @@ The install script takes the following options:
     -h                      show help message
     -v                      show verbose output
 
-## Notes
-
-This is based off [Ryan Bates' old dotfile setup](https://github.com/ryanb/dotfiles/tree/custom-bash-zsh). [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) is great, but is just a bit much. I like to keep my setup as close to the default as possible and change only what I know from personal experience the things I prefer.
-
 ## Useful Links
 
 ### Shell Resources
 
 * http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/
-* http://zsh.sourceforge.net/Intro/intro_toc.html
-* http://www.joshstaiger.org/archives/2005/07/bash_profile_vs.html
-* http://www.softpanorama.info/Scripting/Shellorama/Control_structures/if_statements.shtml
-* http://www.thegeekstuff.com/2008/09/bash-shell-ps1-10-examples-to-make-your-linux-prompt-like-angelina-jolie/
-* http://www.grymoire.com/Unix/Quote.html
-* http://www.acm.uiuc.edu/workshops/zsh/prompt/escapes.html
-* http://www.shellcheck.net/
+* https://joshstaiger.org/archives/2005/07/bash_profile_vs.html
+* https://ryanstutorials.net/bash-scripting-tutorial/bash-if-statements.php
+* https://www.thegeekstuff.com/2008/09/bash-shell-ps1-10-examples-to-make-your-linux-prompt-like-angelina-jolie/
+* https://www.grymoire.com/Unix/Quote.html
+* https://www.shellcheck.net/
 
 ### Emacs Resources
 
-* http://crypt.codemancers.com/posts/2013-09-26-setting-up-emacs-as-development-environment-on-osx
-* http://swaroopch.com/2013/10/17/emacs-configuration-tutorial/
-* http://cask.readthedocs.org/en/latest/index.html
-* https://github.com/cask/cask
-* https://github.com/rdallasgray/pallet
+* https://www.gnu.org/software/emacs/
+* https://melpa.org/#/
+* https://elpa.gnu.org/packages/
+* https://orgmode.org/elpa/
+* https://www.emacswiki.org/
+* https://cestlaz.github.io/stories/emacs/
+* http://xahlee.info/emacs/index.html
+* https://wiki.nikitavoloboev.xyz/text-editors/emacs
+* https://ccrma.stanford.edu/guides/package/emacs/emacs.html
+* https://github.crookster.org/switching-to-straight.el-from-emacs-26-builtin-package.el/
+* https://github.com/caisah/emacs.dz
+* https://github.com/raxod502/straight.el
