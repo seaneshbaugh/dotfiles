@@ -17,6 +17,8 @@
 (straight-use-package 'use-package)
 (setq straight-use-package-by-default t)
 
+(use-package s)
+
 (use-package a68-mode
   :straight '(a68-mode :host github
 		       :repo "omar-polo/a68-mode"
@@ -47,6 +49,25 @@
 
 (use-package elixir-mode
   :hook (elixir-mode . (lambda () (add-hook 'before-save-hook 'elixir-format nil t))))
+
+(use-package enh-ruby-mode
+  :config
+  (setq ruby-insert-encoding-magic-comment nil)
+  (setq enh-ruby-program (s-chomp (shell-command-to-string "which ruby")))
+  (setq enh-ruby-bounce-deep-indent t)
+  (setq enh-ruby-hanging-brace-indent-level 2)
+  :init
+  (add-to-list 'auto-mode-alist '("\\.rb$" . enh-ruby-mode))
+  (add-to-list 'auto-mode-alist '("\\.rake$" . enh-ruby-mode))
+  (add-to-list 'auto-mode-alist '("Rakefile$" . enh-ruby-mode))
+  (add-to-list 'auto-mode-alist '("\\.gemspec$" . enh-ruby-mode))
+  (add-to-list 'auto-mode-alist '("\\.ru$" . enh-ruby-mode))
+  (add-to-list 'auto-mode-alist '("Gemfile$" . enh-ruby-mode))
+  (add-to-list 'auto-mode-alist '("Gemfile.lock$" . enh-ruby-mode))
+  (add-to-list 'auto-mode-alist '("Capfile$" . enh-ruby-mode))
+  (add-to-list 'auto-mode-alist '("Thorfile$" . enh-ruby-mode))
+  (add-to-list 'auto-mode-alist '("\\.thor$" . enh-ruby-mode))
+  (add-to-list 'interpreter-mode-alist '("ruby" . enh-ruby-mode)))
 
 (use-package erlang)
 
@@ -170,6 +191,29 @@
             (unless (string= (file-name-nondirectory (buffer-file-name)) "structure.sql")
               (delete-trailing-whitespace))))
 
+;; Functions
+
+;; http://tuxicity.se/emacs/elisp/2010/03/11/duplicate-current-line-or-region-in-emacs.html
+(defun duplicate-current-line-or-region (arg)
+  "Duplicates the current line or region ARG times.
+If there's no region, the current line will be duplicated. However, if
+there's a region, all lines that region covers will be duplicated."
+  (interactive "p")
+  (let (beg end (origin (point)))
+    (if (and mark-active (> (point) (mark)))
+        (exchange-point-and-mark))
+    (setq beg (line-beginning-position))
+    (if mark-active
+        (exchange-point-and-mark))
+    (setq end (line-end-position))
+    (let ((region (buffer-substring-no-properties beg end)))
+      (dotimes (i arg)
+        (goto-char end)
+        (newline)
+        (insert region)
+        (setq end (point)))
+      (goto-char (+ origin (* (length region) arg) arg)))))
+
 ;; Keybindings
 
 (global-set-key (kbd "C-x p") 'previous-multiframe-window)
@@ -177,8 +221,17 @@
 (global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
 (global-set-key (kbd "S-C-<down>") 'shrink-window)
 (global-set-key (kbd "S-C-<up>") 'enlarge-window)
+(global-set-key (kbd "M-D") 'duplicate-current-line-or-region)
+
+;; Aliases
+
+;; Alias y/n for yes/no
+(defalias 'yes-or-no-p 'y-or-n-p)
 
 ;; Terminal
 
 ;; This fixes some rendering issues with zsh.
 (setq system-uses-terminfo nil)
+
+;; Turn off the bell noise.
+(setq visible-bell 1)
