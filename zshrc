@@ -12,5 +12,3 @@ DOTFILES_DIRECTORY="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
 . "$DOTFILES_DIRECTORY/zsh/aliases"
 [ -f "$HOME/.env" ] && . "$HOME/.env"
 [ -f "/usr/local/opt/asdf/asdf.sh" ] && . "/usr/local/opt/asdf/asdf.sh"
-
-#zstyle ':completion:*:*:git:*' script ./git/git-completion.zsh
