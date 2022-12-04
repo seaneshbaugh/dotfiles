@@ -107,7 +107,16 @@
   :custom
   (lua-indent-level 2))
 
+(use-package magit
+  :if
+  (executable-find "git")
+  :commands magit-status)
+
 (use-package markdown-mode)
+
+(use-package mood-line
+  :init
+  (mood-line-mode))
 
 (use-package neotree
   :init
@@ -132,17 +141,28 @@
   (add-to-list 'auto-mode-alist '("components\\/.*\\.js\\'" . rjsx-mode))
   (add-to-list 'auto-mode-alist '("containers\\/.*\\.js\\'" . rjsx-mode)))
 
+(use-package rubocop)
+
 (use-package rust-mode)
 
 (use-package sass-mode)
 
 (use-package scala-mode)
 
+(use-package sgml-mode
+  :straight nil
+  :config
+  (setq sgml-basic-offset 4))
+
 (use-package slim-mode)
 
 (use-package which-key
   :config
   (which-key-mode))
+
+(use-package w3m
+  :config
+  (setq w3m-use-cookies t))
 
 (use-package yaml-mode)
 
@@ -179,6 +199,9 @@
 
 ;; Editing
 
+;; Indent with spaces instead of tabs.
+(setq-default indent-tabs-mode nil)
+
 ;; Automatically clean up bad whitespace.
 (setq whitespace-action '(auto-cleanup))
 
@@ -193,7 +216,7 @@
 
 ;; Functions
 
-;; http://tuxicity.se/emacs/elisp/2010/03/11/duplicate-current-line-or-region-in-emacs.html
+;; https://rejeep.github.io/emacs/elisp/2010/03/11/duplicate-current-line-or-region-in-emacs.html
 (defun duplicate-current-line-or-region (arg)
   "Duplicates the current line or region ARG times.
 If there's no region, the current line will be duplicated. However, if
@@ -225,7 +248,7 @@ there's a region, all lines that region covers will be duplicated."
 
 ;; Aliases
 
-;; Alias y/n for yes/no
+;; Alias y/n for yes/no.
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 ;; Terminal
@@ -235,3 +258,23 @@ there's a region, all lines that region covers will be duplicated."
 
 ;; Turn off the bell noise.
 (setq visible-bell 1)
+
+;; Locale
+
+;; Use UTF-8 when reading text from files and other sources.
+(set-language-environment 'utf-8)
+
+;; Use UTF-8 for decoding system error message.
+(setq locale-coding-system 'utf-8)
+
+;; Use UTF-8 for keyboard input.
+(set-keyboard-coding-system 'utf-8)
+
+;; Use UTF-8 when accepting and sending selected text.
+(set-selection-coding-system 'utf-8)
+
+;; Use UTF-8 as the preferred encoding for saving buffers.
+(prefer-coding-system 'utf-8)
+
+;; Use UTF-8 for terminal output.
+(set-terminal-coding-system 'utf-8)
