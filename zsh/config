@@ -2,7 +2,8 @@ autoload -U compinit && compinit -u
 
 autoload -U colors && colors
 
-autoload -U $DOTFILES_DIRECTORY/zsh/functions/*(:t)
+fpath=($DOTFILES_DIRECTORY/zsh/functions $fpath)
+autoload -U $DOTFILES_DIRECTORY/zsh/functions/*
 
 REPORTTIME=30
 
@@ -27,13 +28,11 @@ export EDITOR="emacs"
 
 export GOPATH="$HOME/go"
 
-fpath=($DOTFILES_DIRECTORY/zsh/functions $fpath)
-
 fpath=($DOTFILES_DIRECTORY/git-completion/zsh $fpath)
 
-zstyle ':completion:*:*:git:*' script $DOTFILES_DIRECTORY/git-completion/git-completion.bash
+zstyle ':completion:*:*:git:*' script $DOTFILES_DIRECTORY/bash-completion/completions/git
 
-. "$DOTFILES_DIRECTORY/git-completion/git-prompt.sh"
+. "$DOTFILES_DIRECTORY/git-completion/prompt.sh"
 
 GIT_PS1_SHOWCOLORHINTS=1
 
@@ -41,5 +40,10 @@ setopt PROMPT_SUBST
 
 export PS1='%{$fg[cyan]%}%n%{$reset_color%} %{$fg[yellow]%}%~%{$reset_color%}% $(__git_ps1 "[%s]") %# '
 
-precmd () {print -Pn "\e]2; %~/ \a"}
-preexec () {print -Pn "\e]2; %~/ \a"}
+precmd () {
+       print -Pn "\e]2; %~/ \a"
+}
+
+preexec () {
+        print -Pn "\e]2; %~/ \a"
+}
