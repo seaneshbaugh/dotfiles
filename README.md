@@ -29,6 +29,7 @@ The install script takes the following options:
 * https://www.grymoire.com/Unix/Quote.html
 * https://www.shellcheck.net/
 * https://github.com/felipec/git-completion
+* https://thevaluable.dev/zsh-completion-guide-examples/
 
 ### Emacs Resources
 
