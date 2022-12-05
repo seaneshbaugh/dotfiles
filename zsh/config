@@ -1,3 +1,5 @@
+autoload -U compinit && compinit -u
+
 autoload -U colors && colors
 
 autoload -U $DOTFILES_DIRECTORY/zsh/functions/*(:t)
