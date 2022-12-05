@@ -28,6 +28,7 @@ The install script takes the following options:
 * https://www.thegeekstuff.com/2008/09/bash-shell-ps1-10-examples-to-make-your-linux-prompt-like-angelina-jolie/
 * https://www.grymoire.com/Unix/Quote.html
 * https://www.shellcheck.net/
+* https://github.com/felipec/git-completion
 
 ### Emacs Resources
 
