@@ -1,0 +1,7 @@
+if [[ $# -ne 1 ]]; then
+  echo "usage: hs searchstring"
+
+  return 1
+fi
+
+cat ~/.zsh_history | grep $1

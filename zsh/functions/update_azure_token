@@ -1,0 +1,35 @@
+local token
+token=$(az account get-access-token --resource-type oss-rdbms --query "[accessToken]" -o tsv)
+
+if [[ $? -ne 0 || -z $token ]]; then
+   echo "Failed to retrieve access token."
+   return 1
+fi
+
+echo $token
+
+if [[ -f ~/.env ]]; then
+    sed -i '' -e "/^export MYSQL_ACCESS_TOKEN=/s|=.*|=\"$token\"|" ~/.env
+ else
+    echo "MYSQL_ACCESS_TOKEN=\"$token\"" > ~/.env
+fi
+
+source ~/.env
+
+echo "MYSQL_ACCESS_TOKEN updated and ~/.env sourced."
+
+if [[ -f ~/Work/teladoc/member_master/.env ]]; then
+    sed -i '' -e "/^DB_PASSWORD=/s|=.*|=\"$token\"|" ~/Work/teladoc/member_master/.env
+
+    echo "member_master .env file updated."
+ else
+    echo "Warning: member_master .env file not found."
+fi
+
+if [[ -f ~/Work/teladoc/member_master/config/database.yml ]]; then
+    sed -i '' -e "/^  password: /s|=.*|=\"$token\"|" ~/Work/teladoc/member_master/config/database.yml
+
+    echo "member_master database.yml file updated."
+ else
+    echo "Warning: member_master database.yml file not found."
+fi

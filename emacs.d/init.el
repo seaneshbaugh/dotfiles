@@ -47,6 +47,8 @@
 
 (use-package dockerfile-mode)
 
+(use-package eglot)
+
 (use-package elixir-mode
   :hook (elixir-mode . (lambda () (add-hook 'before-save-hook 'elixir-format nil t))))
 
@@ -76,8 +78,7 @@
 (use-package fsharp-mode)
 
 (use-package git-gutter
-  :init
-  (global-git-gutter-mode t))
+  :init (global-git-gutter-mode t))
 
 (use-package go-mode)
 
@@ -163,6 +164,11 @@
 (use-package w3m
   :config
   (setq w3m-use-cookies t))
+
+(use-package web-mode
+  :config
+  (progn
+    (add-to-list 'auto-mode-alist '("\\.html.tmpl" . web-mode))))
 
 (use-package yaml-mode)
 
