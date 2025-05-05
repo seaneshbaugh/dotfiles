@@ -161,10 +161,6 @@
   :config
   (which-key-mode))
 
-(use-package w3m
-  :config
-  (setq w3m-use-cookies t))
-
 (use-package web-mode
   :config
   (progn

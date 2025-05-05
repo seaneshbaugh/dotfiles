@@ -11,4 +11,5 @@ DOTFILES_DIRECTORY="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
 . "$DOTFILES_DIRECTORY/zsh/config"
 . "$DOTFILES_DIRECTORY/zsh/aliases"
 [ -f "$HOME/.env" ] && . "$HOME/.env"
-[ -f "/usr/local/opt/asdf/libexec/asdf.sh" ] && . "/usr/local/opt/asdf/libexec/asdf.sh"
+
+export PATH="${ASDF_DATA_DIR:=$HOME/.asdf}/shims:$PATH"

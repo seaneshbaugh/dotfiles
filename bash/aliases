@@ -1,1 +1,1 @@
-. "$DOTFILES_DIRECTORY/zsh/aliases"
+alias ls="ls -alG --color=auto"
