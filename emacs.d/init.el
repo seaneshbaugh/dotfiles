@@ -34,6 +34,8 @@
 
 (use-package coffee-mode)
 
+(use-package consult)
+
 (use-package csharp-mode
   :hook (csharp-mode . electric-pair-local-mode))
 
