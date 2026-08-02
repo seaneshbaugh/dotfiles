@@ -23,3 +23,5 @@ DOTFILES_DIRECTORY="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
 [ -f "$HOME/.env" ] && . "$HOME/.env"
 
 export PATH="${ASDF_DATA_DIR:=$HOME/.asdf}/shims:$PATH"
+
+. "$HOME/.local/bin/env"
