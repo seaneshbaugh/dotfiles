@@ -9,3 +9,4 @@ straight/versions/*
 *.elc
 ac-comphist.dat
 eln-cache/
+tree-sitter/

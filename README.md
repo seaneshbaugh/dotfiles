@@ -18,6 +18,14 @@ The install script takes the following options:
     -h                      show help message
     -v                      show verbose output
 
+# Emacs Configuration
+
+Most of the Emacs configuration should work automatically as soon as Emacs is run for the first time. The one exception is ruby-lsp. In order to get ruby-lsp working the [ruby-lsp](https://rubygems.org/gems/ruby-lsp) must first be installed with:
+
+    $ gem install ruby-lsp
+
+This will need to be done for each version of Ruby.
+
 ## Useful Links
 
 ### Shell Resources

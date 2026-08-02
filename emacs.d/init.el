@@ -52,24 +52,22 @@
 (use-package elixir-mode
   :hook (elixir-mode . (lambda () (add-hook 'before-save-hook 'elixir-format nil t))))
 
-(use-package enh-ruby-mode
-  :config
-  (setq ruby-insert-encoding-magic-comment nil)
-  (setq enh-ruby-program (s-chomp (shell-command-to-string "which ruby")))
-  (setq enh-ruby-bounce-deep-indent t)
-  (setq enh-ruby-hanging-brace-indent-level 2)
-  :init
-  (add-to-list 'auto-mode-alist '("\\.rb$" . enh-ruby-mode))
-  (add-to-list 'auto-mode-alist '("\\.rake$" . enh-ruby-mode))
-  (add-to-list 'auto-mode-alist '("Rakefile$" . enh-ruby-mode))
-  (add-to-list 'auto-mode-alist '("\\.gemspec$" . enh-ruby-mode))
-  (add-to-list 'auto-mode-alist '("\\.ru$" . enh-ruby-mode))
-  (add-to-list 'auto-mode-alist '("Gemfile$" . enh-ruby-mode))
-  (add-to-list 'auto-mode-alist '("Gemfile.lock$" . enh-ruby-mode))
-  (add-to-list 'auto-mode-alist '("Capfile$" . enh-ruby-mode))
-  (add-to-list 'auto-mode-alist '("Thorfile$" . enh-ruby-mode))
-  (add-to-list 'auto-mode-alist '("\\.thor$" . enh-ruby-mode))
-  (add-to-list 'interpreter-mode-alist '("ruby" . enh-ruby-mode)))
+(use-package ruby-ts-mode
+  :straight nil
+  :mode
+  ("\\.rb\\'"       . ruby-ts-mode)
+  ("\\.rake\\'"     . ruby-ts-mode)
+  ("\\.gemspec\\'"  . ruby-ts-mode)
+  ("\\.ru\\'"       . ruby-ts-mode)
+  ("\\.thor\\'"     . ruby-ts-mode)
+  ("Rakefile\\'"    . ruby-ts-mode)
+  ("Gemfile\\'"     . ruby-ts-mode)
+  ("Capfile\\'"     . ruby-ts-mode)
+  ("Thorfile\\'"    . ruby-ts-mode)
+  :interpreter
+  ("ruby" . ruby-ts-mode)
+  :custom
+  (ruby-insert-encoding-magic-comment nil))
 
 (use-package erlang)
 
@@ -153,7 +151,7 @@
 (use-package sgml-mode
   :straight nil
   :config
-  (setq sgml-basic-offset 4))
+  (setq sgml-basic-offset 2))
 
 (use-package slim-mode)
 
@@ -167,6 +165,35 @@
     (add-to-list 'auto-mode-alist '("\\.html.tmpl" . web-mode))))
 
 (use-package yaml-mode)
+
+;; eglot Config
+
+;; Commented out language parsers are binary incompatible with Emacs 29.
+;; Uncomment them when running a new version of Emacs. Unfortunate I'm stuck on 29 on my desktop until Ubuntu LTS updates.
+
+(setq treesit-language-source-alist
+      '(;;(bash . ("https://github.com/tree-sitter/tree-sitter-bash"))
+        ;;(css . ("https://github.com/tree-sitter/tree-sitter-css"))
+        (html . ("https://github.com/tree-sitter/tree-sitter-html"))
+        ;; (javascript . ("https://github.com/tree-sitter/tree-sitter-javascript" "master" "src"))
+        (json . ("https://github.com/tree-sitter/tree-sitter-json"))
+        ;; (python . ("https://github.com/tree-sitter/tree-sitter-python"))
+        (ruby . ("https://github.com/tree-sitter/tree-sitter-ruby"))
+        (tsx . ("https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src"))
+        (typescript . ("https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src"))
+        (yaml . ("https://github.com/ikatyang/tree-sitter-yaml"))))
+
+;; (dolist (lang '(bash css html javascript json python ruby tsx typescript yaml))
+(dolist (lang '(html json ruby tsx typescript yaml))
+  (unless (treesit-language-available-p lang)
+    (treesit-install-language-grammar lang)))
+
+(with-eval-after-load 'eglot
+  (add-to-list
+   'eglot-server-programs
+   '((ruby-mode ruby-ts-mode) . ("ruby-lsp"))))
+
+(add-hook 'ruby-ts-mode-hook #'eglot-ensure)
 
 ;; Backups
 
@@ -247,6 +274,7 @@ there's a region, all lines that region covers will be duplicated."
 (global-set-key (kbd "S-C-<down>") 'shrink-window)
 (global-set-key (kbd "S-C-<up>") 'enlarge-window)
 (global-set-key (kbd "M-D") 'duplicate-current-line-or-region)
+(global-set-key (kbd "C-c b") 'revert-buffer)
 
 ;; Aliases
 
