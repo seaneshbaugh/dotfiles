@@ -103,6 +103,11 @@ for dotfile in "${DOTFILES[@]}"; do
     source_path="$DOTFILE_DIRECTORY/$dotfile"
     dotfile_path="$HOME/.$dotfile"
 
+    if [[ ! -e "$source_path" ]]; then
+        echo "Warning: $source_path does not exist, skipping." >&2
+        continue
+    fi
+
     if [[ -e $dotfile_path || -L $dotfile_path ]]; then
         dotfile_name="$(basename "$dotfile_path")"
         backup_path="$BACKUP_DIRECTORY/$dotfile_name"
