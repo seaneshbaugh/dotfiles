@@ -26,21 +26,9 @@ function abspath {
     fi
 }
 
-function expand_tilde {
-    case "$1" in
-        (\~)        echo "$HOME";;
-        (\~/*)      echo "$HOME/${1#\~/}";;
-        (\~[^/]*/*) local user
-                    user="$(eval echo "${1%%/*}")"
-                    echo "$user/${1#*/}";;
-        (\~[^/]*)   eval echo ${1};;
-        (*)         echo "$1";;
-    esac
-}
-
 INSTALL_SCRIPT_PATH="$(abspath "$0")"
 DOTFILE_DIRECTORY="$(dirname "$INSTALL_SCRIPT_PATH")"
-BACKUP_DIRECTORY="${DOTFILE_DIRECTORY}_backup"
+BACKUP_DIRECTORY="${DOTFILE_DIRECTORY}-backup"
 DEFAULT_DOTFILES="bash_profile bashrc emacs.d gemrc gitconfig gnus.el tool-versions vimrc zlogin zlogout zshenv zshrc"
 DOTFILES=()
 DRYRUN=0
@@ -49,7 +37,7 @@ VERBOSE=0
 while getopts "b:df:hv" opt; do
     case "$opt" in
         b)
-            BACKUP_DIRECTORY="$(expand_tilde "$OPTARG")"
+            BACKUP_DIRECTORY=$OPTARG
 
             if [[ "$BACKUP_DIRECTORY" = "$HOME" || "$BACKUP_DIRECTORY" = "$DOTFILE_DIRECTORY" ]]; then
                 echo "Error: Cannot use home directory or $DOTFILE_DIRECTORY as backup directory." >&2
@@ -100,7 +88,7 @@ if [[ "$DRYRUN" -eq 0 ]]; then
     mkdir -p "$BACKUP_DIRECTORY"
 fi
 
-for dotfile in ${DOTFILES[@]}; do
+for dotfile in "${DOTFILES[@]}"; do
     source_path="$DOTFILE_DIRECTORY/$dotfile"
     dotfile_path="$HOME/.$dotfile"
 
