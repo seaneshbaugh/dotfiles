@@ -103,7 +103,7 @@ for dotfile in "${DOTFILES[@]}"; do
     source_path="$DOTFILE_DIRECTORY/$dotfile"
     dotfile_path="$HOME/.$dotfile"
 
-    if [[ -e $dotfile_path ]]; then
+    if [[ -e $dotfile_path || -L $dotfile_path ]]; then
         dotfile_name="$(basename "$dotfile_path")"
         backup_path="$BACKUP_DIRECTORY/$dotfile_name"
 
@@ -118,27 +118,44 @@ for dotfile in "${DOTFILES[@]}"; do
                 echo "$dotfile_path is a symlink pointing to $symlink_path."
             fi
 
-            symlink_directory="$(dirname "$symlink_path")"
-
-            if [[ "$symlink_directory" = "$DOTFILE_DIRECTORY" ]]; then
+            if [[ -e $dotfile_path ]]; then
                 if [[ "$VERBOSE" -eq 1 ]]; then
-                    echo "$dotfile_path is pointing to a file in $DOTFILE_DIRECTORY, skipping."
+                    echo "$dotfile_path is a valid symlink."
                 fi
 
-                continue
+                if [[ $dotfile_path -ef $source_path ]]; then
+                    if [[ "$VERBOSE" -eq 1 ]]; then
+                        echo "$dotfile_path is already pointing $source_path, skipping."
+                    fi
+
+                    continue
+                else
+                    if [[ "$VERBOSE" -eq 1 ]]; then
+                        echo "$dotfile_path is pointing to a file other than $source_path."
+                    fi
+
+                    if [[ "$VERBOSE" -eq 1 ]]; then
+                        echo "Backing up old symlink with path correction."
+                    fi
+
+                    new_symlink_path="$(realpath "$dotfile_path" "--relative-to=$BACKUP_DIRECTORY")"
+
+                    if [[ "$DRYRUN" -eq 0 ]]; then
+                        ln -s "$new_symlink_path" "$backup_path"
+                        rm "$dotfile_path"
+                    fi
+                fi
             else
                 if [[ "$VERBOSE" -eq 1 ]]; then
-                    echo "$dotfile_path is pointing to a file outside $DOTFILE_DIRECTORY."
+                    echo "$dotfile_path is not a valid symlink."
                 fi
 
                 if [[ "$VERBOSE" -eq 1 ]]; then
-                    echo "Backing up old symlink."
+                    echo "Backing up old symlink as is with no path correction."
                 fi
 
-                new_symlink_path="$(realpath "$dotfile_path" "--relative-to=$BACKUP_DIRECTORY")"
-
                 if [[ "$DRYRUN" -eq 0 ]]; then
-                    ln -s "$new_symlink_path" "$backup_path"
+                    ln -s "$symlink_path" "$backup_path"
                     rm "$dotfile_path"
                 fi
             fi
