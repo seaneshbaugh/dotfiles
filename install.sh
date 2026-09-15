@@ -29,7 +29,20 @@ function abspath {
 INSTALL_SCRIPT_PATH="$(abspath "$0")"
 DOTFILE_DIRECTORY="$(dirname "$INSTALL_SCRIPT_PATH")"
 BACKUP_DIRECTORY="${DOTFILE_DIRECTORY}-backup"
-DEFAULT_DOTFILES="bash_profile bashrc emacs.d gemrc gitconfig gnus.el tool-versions vimrc zlogin zlogout zshenv zshrc"
+DEFAULT_DOTFILES=(
+    bash_profile
+    bashrc
+    emacs.d
+    gemrc
+    gitconfig
+    gnus.el
+    tool-versions
+    vimrc
+    zlogin
+    zlogout
+    zshenv
+    zshrc
+)
 DOTFILES=()
 DRYRUN=0
 VERBOSE=0
@@ -67,9 +80,7 @@ while getopts "b:df:hv" opt; do
 done
 
 if [[ ${#DOTFILES[@]} -eq 0 ]]; then
-    for dotfile in $DEFAULT_DOTFILES; do
-        DOTFILES+=("$dotfile")
-    done
+    DOTFILES=("${DEFAULT_DOTFILES[@]}")
 fi
 
 if [[ "$DRYRUN" -eq 1 ]]; then
