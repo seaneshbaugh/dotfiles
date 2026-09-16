@@ -1,0 +1,4 @@
+[safe]
+        directory = /mnt/z
+[core]
+        autocrlf = input

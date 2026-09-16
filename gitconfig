@@ -14,3 +14,6 @@
 
 [color "diff"]
     whitespace = red reverse
+
+[include]
+        path = ~/.gitconfig.local

@@ -56,10 +56,21 @@ function detect_platform {
     esac
 }
 
+function is_platform_replacement_dotfile {
+    local dotfile="$1"
+
+    for replacement in "${PLATFORM_REPLACEMENT_DOTFILES[@]}"; do
+        [[ "$replacement" = "$dotfile" ]] && return 0
+    done
+
+    return 1
+}
+
 function install_dotfile {
     local dotfile="$1"
+    local destination="${2:-$dotfile}"
     local source_path="$DOTFILE_DIRECTORY/$dotfile"
-    local dotfile_path="$HOME/.$dotfile"
+    local dotfile_path="$HOME/.$destination"
 
     if [[ ! -e "$source_path" ]]; then
         echo "Warning: $source_path does not exist, skipping." >&2
@@ -97,11 +108,11 @@ function install_dotfile {
                         echo "$dotfile_path is pointing to a file other than $source_path."
                     fi
 
-                    if [[ "$VERBOSE" -eq 1 ]]; then
-                        echo "Backing up old symlink with path correction."
-                    fi
-
                     local new_symlink_path="$(realpath "$dotfile_path" "--relative-to=$BACKUP_DIRECTORY")"
+
+                    if [[ "$VERBOSE" -eq 1 ]]; then
+                        echo "Backing up old symlink with corrected path $new_symlink_path."
+                    fi
 
                     if [[ "$DRYRUN" -eq 0 ]]; then
                         ln -s "$new_symlink_path" "$backup_path"
@@ -137,7 +148,7 @@ function install_dotfile {
         fi
 
         if [[ "$VERBOSE" -eq 1 ]]; then
-            echo "Creating new symlink for $dotfile_path."
+            echo "Creating new symlink for $dotfile_path to $source_path."
         fi
 
         if [[ "$DRYRUN" -eq 0 ]]; then
@@ -145,7 +156,7 @@ function install_dotfile {
         fi
     else
         if [[ "$VERBOSE" -eq 1 ]]; then
-            echo "$dotfile_path does not already exist, creating symlink."
+            echo "$dotfile_path does not already exist, creating symlink to $source_path."
         fi
 
         if [[ "$DRYRUN" -eq 0 ]]; then
@@ -154,6 +165,7 @@ function install_dotfile {
     fi
 }
 
+PLATFORM="$(detect_platform)"
 INSTALL_SCRIPT_PATH="$(abspath "$0")"
 DOTFILE_DIRECTORY="$(dirname "$INSTALL_SCRIPT_PATH")"
 BACKUP_DIRECTORY="${DOTFILE_DIRECTORY}-backup"
@@ -172,6 +184,14 @@ DEFAULT_DOTFILES=(
     zshrc
 )
 DOTFILES=()
+DEFAULT_PLATFORM_REPLACEMENT_DOTFILES=(
+    tool-versions
+)
+PLATFORM_REPLACEMENT_DOTFILES=()
+DEFAULT_PLATFORM_LOCAL_DOTFILES=(
+    gitconfig
+)
+PLATFORM_LOCAL_DOTFILES=()
 DRYRUN=0
 VERBOSE=0
 
@@ -191,6 +211,7 @@ while getopts "b:df:hv" opt; do
             ;;
         f)
             DOTFILES+=("$OPTARG")
+            PLATFORM_LOCAL_DOTFILES+=("$OPTARG")
             ;;
         h)
             show_help
@@ -211,6 +232,14 @@ if [[ ${#DOTFILES[@]} -eq 0 ]]; then
     DOTFILES=("${DEFAULT_DOTFILES[@]}")
 fi
 
+if [[ ${#PLATFORM_REPLACEMENT_DOTFILES[@]} -eq 0 ]]; then
+    PLATFORM_REPLACEMENT_DOTFILES=("${DEFAULT_PLATFORM_REPLACEMENT_DOTFILES[@]}")
+fi
+
+if [[ ${#PLATFORM_LOCAL_DOTFILES[@]} -eq 0 ]]; then
+    PLATFORM_LOCAL_DOTFILES=("${DEFAULT_PLATFORM_LOCAL_DOTFILES[@]}")
+fi
+
 if [[ "$DRYRUN" -eq 1 ]]; then
     echo "Doing dry run. No files will be modified."
 fi
@@ -228,5 +257,50 @@ if [[ "$DRYRUN" -eq 0 ]]; then
 fi
 
 for dotfile in "${DOTFILES[@]}"; do
-    install_dotfile "$dotfile"
+    platform_replacement_dotfile="$dotfile.$PLATFORM"
+
+    if is_platform_replacement_dotfile "$dotfile" && [[ -e "$DOTFILE_DIRECTORY/$platform_replacement_dotfile" ]]; then
+        if [[ "$VERBOSE" -eq 1 ]]; then
+            echo "$platform_replacement_dotfile is a replacement dotfile for $PLATFORM."
+        fi
+
+        case "$PLATFORM" in
+            darwin|fedora|ubuntu)
+                if [[ "$VERBOSE" -eq 1 ]]; then
+                    echo "$PLATFORM is a supported platform, installing replacement dotfile."
+                fi
+
+                install_dotfile "$platform_replacement_dotfile" "$dotfile"
+                ;;
+            *)
+                if [[ "$VERBOSE" -eq 1 ]]; then
+                    echo "$PLATFORM is not a supported platform, installing base dotfile."
+                fi
+
+                install_dotfile "$dotfile"
+                ;;
+        esac
+    else
+        install_dotfile "$dotfile"
+    fi
 done
+
+case "$PLATFORM" in
+    darwin|fedora|ubuntu)
+        if [[ "$VERBOSE" -eq 1 ]]; then
+            echo "$PLATFORM is a supported platform, installing local dotfiles."
+        fi
+
+        for dotfile in "${PLATFORM_LOCAL_DOTFILES[@]}"; do
+            platform_local_dotfile="$dotfile.local.$PLATFORM"
+
+            if [[ -e "$DOTFILE_DIRECTORY/$platform_local_dotfile" ]]; then
+                if [[ "$VERBOSE" -eq 1 ]]; then
+                    echo "$platform_local_dotfile is a local dotfile for $PLATFORM."
+                fi
+
+                install_dotfile "$platform_local_dotfile" "$dotfile.local"
+            fi
+        done
+        ;;
+esac
