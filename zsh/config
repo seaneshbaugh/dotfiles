@@ -30,13 +30,19 @@ fpath=($DOTFILES_DIRECTORY/git-completion/zsh $fpath)
 
 zstyle ':completion:*:*:git:*' script $DOTFILES_DIRECTORY/bash-completion/completions/git
 
-. "$DOTFILES_DIRECTORY/git-completion/prompt.sh"
+if [[ -f "/usr/share/git-core/contrib/completion/git-prompt.sh" ]]; then
+    . "/usr/share/git-core/contrib/completion/git-prompt.sh"
+elif [[ -f "/usr/lib/git-core/git-sh-prompt" ]]; then
+    . "/usr/lib/git-core/git-sh-prompt"
+elif [[ -f "/Library/Developer/CommandLineTools/usr/share/git-core/git-prompt.sh" ]]; then
+    . "/Library/Developer/CommandLineTools/usr/share/git-core/git-prompt.sh"
+fi
 
 GIT_PS1_SHOWCOLORHINTS=1
 
 setopt PROMPT_SUBST
 
-export PS1='%{$fg[cyan]%}%n%{$reset_color%} %{$fg[yellow]%}%~%{$reset_color%}% $(__git_ps1 "[%s]") %# '
+PS1='%{$fg[cyan]%}%n%{$reset_color%} %{$fg[yellow]%}%~%{$reset_color%}% $(__git_ps1 "[%s]") %# '
 
 precmd () {
        print -Pn "\e]2; %~/ \a"
