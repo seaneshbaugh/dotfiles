@@ -26,10 +26,6 @@ if [[ -d "$HOME/.cargo/bin" ]]; then export PATH="$HOME/.cargo/bin:$PATH"; fi
 
 export EDITOR="emacs"
 
-fpath=($DOTFILES_DIRECTORY/git-completion/zsh $fpath)
-
-zstyle ':completion:*:*:git:*' script $DOTFILES_DIRECTORY/bash-completion/completions/git
-
 if [[ -f "/usr/share/git-core/contrib/completion/git-prompt.sh" ]]; then
     . "/usr/share/git-core/contrib/completion/git-prompt.sh"
 elif [[ -f "/usr/lib/git-core/git-sh-prompt" ]]; then
