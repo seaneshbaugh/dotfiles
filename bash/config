@@ -96,8 +96,6 @@ export PATH="$HOME/bin:$PATH"
 
 export EDITOR="emacs"
 
-export GOPATH="$HOME/go"
-
 if [[ -d "$HOME/opt/GNAT/2020/bin" ]]; then export PATH="$PATH:$HOME/opt/GNAT/2020/bin"; fi
 
 if [[ -d "$HOME/.cargo/bin" ]]; then export PATH="$HOME/.cargo/bin:$PATH"; fi

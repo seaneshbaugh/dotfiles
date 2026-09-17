@@ -26,8 +26,6 @@ if [[ -d "$HOME/.cargo/bin" ]]; then export PATH="$HOME/.cargo/bin:$PATH"; fi
 
 export EDITOR="emacs"
 
-export GOPATH="$HOME/go"
-
 fpath=($DOTFILES_DIRECTORY/git-completion/zsh $fpath)
 
 zstyle ':completion:*:*:git:*' script $DOTFILES_DIRECTORY/bash-completion/completions/git
