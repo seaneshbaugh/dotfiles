@@ -18,14 +18,6 @@ setopt HIST_IGNORE_DUPS
 setopt HIST_VERIFY
 setopt SHARE_HISTORY
 
-export PATH="$HOME/bin:$PATH"
-
-if [[ -d "$HOME/opt/GNAT/2020/bin" ]]; then export PATH="$PATH:$HOME/opt/GNAT/2020/bin"; fi
-
-if [[ -d "$HOME/.cargo/bin" ]]; then export PATH="$HOME/.cargo/bin:$PATH"; fi
-
-export EDITOR="emacs"
-
 if [[ -f "/usr/share/git-core/contrib/completion/git-prompt.sh" ]]; then
     . "/usr/share/git-core/contrib/completion/git-prompt.sh"
 elif [[ -f "/usr/lib/git-core/git-sh-prompt" ]]; then

@@ -1,0 +1,12 @@
+export PATH="$HOME/bin:$PATH"
+
+# TODO: Remove this once all machines are migrated from asdf to mise.
+[[ -d "${ASDF_DATA_DIR:=$HOME/.asdf}/shims" ]] && export PATH="${ASDF_DATA_DIR:=$HOME/.asdf}/shims:$PATH"
+
+[[ -d "$HOME/opt/GNAT/2020/bin" ]] && export PATH="$PATH:$HOME/opt/GNAT/2020/bin"
+
+[[ -d "$HOME/.cargo/bin" ]] && export PATH="$HOME/.cargo/bin:$PATH"
+
+[[ -f "$HOME/.local/bin/env" ]] && . "$HOME/.local/bin/env"
+
+export EDITOR="emacs"
