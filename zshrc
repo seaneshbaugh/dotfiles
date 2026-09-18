@@ -12,3 +12,5 @@ DOTFILES_DIRECTORY="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
 . "$DOTFILES_DIRECTORY/common/config"
 . "$DOTFILES_DIRECTORY/zsh/config"
 . "$DOTFILES_DIRECTORY/zsh/aliases"
+
+[[ -f "$HOME/.zshrc.local" ]] && . "$HOME/.zshrc.local"
