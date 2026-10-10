@@ -271,6 +271,12 @@ there's a region, all lines that region covers will be duplicated."
         (setq end (point)))
       (goto-char (+ origin (* (length region) arg) arg)))))
 
+;; Revert buffer without requiring confirmation.
+(defun revert-this-buffer ()
+  (interactive)
+  (revert-buffer nil t t)
+  (message (concat "Reverted buffer " (buffer-name))))
+
 ;; Keybindings
 
 (global-set-key (kbd "C-x p") 'previous-multiframe-window)
@@ -279,7 +285,9 @@ there's a region, all lines that region covers will be duplicated."
 (global-set-key (kbd "S-C-<down>") 'shrink-window)
 (global-set-key (kbd "S-C-<up>") 'enlarge-window)
 (global-set-key (kbd "M-D") 'duplicate-current-line-or-region)
-(global-set-key (kbd "C-c b") 'revert-buffer)
+(global-set-key (kbd "C-c b") 'revert-this-buffer)
+(global-set-key (kbd "C-c c") 'revert-buffer)
+(global-set-key (kbd "C-c s") #'consult-ripgrep)
 
 ;; Aliases
 
